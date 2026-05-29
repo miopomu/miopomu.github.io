@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | あなたの名前</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --text: #1a1a18;
+      --muted: #6b6b65;
+      --border: #e2e2dc;
+      --accent: #3a3a36;
+      --link: #2563a8;
+      --max-w: 720px;
+    }
+    [data-theme="dark"] {
+      --bg: #141412;
+      --text: #eaeae4;
+      --muted: #9a9a90;
+      --border: #2e2e28;
+      --accent: #d0d0c8;
+      --link: #7ab4f0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    #theme-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 4px;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+    #theme-btn:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+    section { margin-bottom: 5rem; }
+    h2 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      margin-bottom: 1.8rem;
+      color: var(--text);
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    p { color: var(--text); }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .profile-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--muted);
+      overflow: hidden;
+    }
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-img-placeholder {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--muted);
+    }
+    .about-bio p {
+      font-size: 0.97rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .social-links a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .social-links a:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    /* ── PROJECTS ── */
+    .project-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .project-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; }
+    .project-img {
+      width: 160px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    .project-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 5px; }
+    .project-meta { font-size: 0.82rem; color: var(--muted); margin: 0.25rem 0 0.5rem; font-style: italic; }
+    .project-links { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .project-links a {
+      font-size: 0.82rem;
+      color: var(--link);
+      text-decoration: none;
+    }
+    .project-links a:hover { text-decoration: underline; }
+
+    /* ── INTERESTS TABS ── */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.8rem;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.15s;
+    }
+    .tab-btn.active {
+      color: var(--text);
+      border-bottom-color: var(--text);
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .interest-section { margin-bottom: 2rem; }
+    .interest-section h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .interest-section h4 {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 1rem 0 0.4rem;
+    }
+    .interest-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .interest-section ul li {
+      font-size: 0.92rem;
+      color: var(--text);
+      padding: 0.2rem 0;
+    }
+    .interest-section ul li::before {
+      content: "–  ";
+      color: var(--muted);
+    }
+    .interest-section p {
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    /* gallery grid */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+    .gallery-item { border-radius: 6px; overflow: hidden; aspect-ratio: 1; border: 1px solid var(--border); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-placeholder {
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.5rem;
+      height: 100%;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .profile-img-placeholder { margin: 0 auto; }
+      .project-item { grid-template-columns: 1fr; }
+      .project-img { width: 100%; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">あなたの名前</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#interests">Interests</a></li>
+    <li>
+      <button id="theme-btn" aria-label="ダークモード切り替え">🌙</button>
+    </li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <!-- プロフィール画像: src="your-photo.jpg" に変更してください -->
+      <div class="profile-img-placeholder">🧑</div>
+
+      <div class="about-bio">
+        <div class="social-links" style="margin-bottom: 1rem; margin-top: 0;">
+          <a href="mailto:your@email.com">✉ Email</a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+          <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+          <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+        </div>
+        <p>
+          はじめまして、〇〇です。○○大学の△△専攻の学生／研究者で、
+          〇〇教授のもとで○○の研究をしています。
+        </p>
+        <p>
+          以前は△△大学で〇〇を専攻し、□□に取り組みました。
+          研究以外では、AI・教育・科学コミュニケーションにも関心があります。
+        </p>
+        <p>
+          ラボの外では、〇〇や△△を楽しんでいます。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-list">
+
+      <div class="project-item">
+        <!-- 画像: src="assets/project1.png" に変更 -->
+        <div class="project-img">
+          <div style="text-align:center; color: var(--muted); font-size:0.8rem;">
+            プロジェクト画像<br>ここに配置
+          </div>
+        </div>
+        <div>
+          <h3>プロジェクトのタイトルをここに書く</h3>
+          <p class="project-meta">著者名 — <em>学会名 2024</em></p>
+          <p style="font-size:0.9rem;">
+            プロジェクトの概要をここに書きます。どんな技術を使って何を達成したか、
+            簡潔に説明してください。
+          </p>
+          <div class="project-links">
+            <a href="#">→ Paper</a>
+            <a href="#">→ Code</a>
+            <a href="#">→ Blog</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="project-img">
+          <div style="text-align:center; color: var(--muted); font-size:0.8rem;">
+            プロジェクト画像<br>ここに配置
+          </div>
+        </div>
+        <div>
+          <h3>2つ目のプロジェクトタイトル</h3>
+          <p class="project-meta"><em>2023年 夏</em></p>
+          <p style="font-size:0.9rem;">
+            2つ目のプロジェクトの説明です。オープンソースのツールや成果物について書きましょう。
+          </p>
+          <div class="project-links">
+            <a href="#">→ Code</a>
+            <a href="#">→ Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── INTERESTS ── -->
+  <section id="interests">
+    <h2>Interests</h2>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="teaching">Teaching 📚</button>
+      <button class="tab-btn" data-tab="music">Music 🎵</button>
+      <button class="tab-btn" data-tab="design">Design 🎨</button>
+    </div>
+
+    <!-- Teaching -->
+    <div class="tab-panel active" id="tab-teaching">
+      <div class="interest-section">
+        <h3>○○大学</h3>
+        <ul>
+          <li>〇〇論のTA（2025年秋）</li>
+          <li>△△のTA（2024年春）</li>
+        </ul>
+      </div>
+      <div class="interest-section">
+        <h3>□□大学</h3>
+        <ul>
+          <li>アルゴリズム論のTA（2023年）</li>
+          <li>確率論のTA（2022年）</li>
+          <li>Python入門の講義アシスタント</li>
+        </ul>
+      </div>
+      <!-- YouTube動画を埋め込む場合 -->
+      <!--
+      <div style="margin-top:1.5rem;">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID"
+          frameborder="0" allowfullscreen style="border-radius:8px; border:1px solid var(--border);">
+        </iframe>
+      </div>
+      -->
+    </div>
+
+    <!-- Music -->
+    <div class="tab-panel" id="tab-music">
+      <div class="interest-section">
+        <h3>〇〇トリオ</h3>
+        <p style="font-style:italic; color:var(--muted); font-size:0.9rem; margin-bottom:0.7rem;">
+          大学室内楽 2024春（曲名、曲名、曲名）
+        </p>
+        <p>
+          ここに音楽活動の説明を書きます。どんな楽器を弾いているか、
+          どんなジャンルに挑戦したか、印象的なエピソードを書きましょう。
+        </p>
+      </div>
+      <div class="interest-section">
+        <h3>ソロ演奏</h3>
+        <p>楽器のソロ演奏についての説明です。</p>
+      </div>
+    </div>
+
+    <!-- Design / Make things -->
+    <div class="tab-panel" id="tab-design">
+      <div class="interest-section">
+        <p style="margin-bottom:1rem; font-size:0.92rem; color:var(--muted);">
+          制作物・デザイン作品のギャラリーです。
+        </p>
+        <div class="gallery">
+          <div class="gallery-item"><div class="gallery-placeholder">作品1<br>画像</div></div>
+          <div class="gallery-item"><div class="gallery-placeholder">作品2<br>画像</div></div>
+          <div class="gallery-item"><div class="gallery-placeholder">作品3<br>画像</div></div>
+          <div class="gallery-item"><div class="gallery-placeholder">作品4<br>画像</div></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  Made with ♡ and ☕ &nbsp;·&nbsp; Last updated: 2025
+</footer>
+
+<script>
+  const btn = document.getElementById('theme-btn');
+  const root = document.documentElement;
+  let dark = false;
+  btn.addEventListener('click', () => {
+    dark = !dark;
+    root.setAttribute('data-theme', dark ? 'dark' : '');
+    btn.textContent = dark ? '☀️' : '🌙';
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
