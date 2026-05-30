@@ -347,38 +347,25 @@
     <div class="project-list">
 
       <div class="project-item">
-  <img src="fudey.jpg" alt="Fudey project" style="width:200px; height:130px; object-fit:cover; border-radius:6px; border:1px solid var(--border);" />
-    <div style="text-align:center; color: var(--muted); font-size:0.8rem;">
-      project image here
-    </div>
-  </div>
-  <div>
-    <h3>Local Brushstroke Quality Assessment via Vision-Language Feedback</h3>
-    <p class="project-meta">Mio Mitamura, Hirokatsu Kataoka — <em>CVPR 2026 Workshop</em> · <em>情報処理学会 2025</em></p>
-    <p style="font-size:0.9rem;">
-      We investigate whether Multimodal Large Language Models (MLLMs) can evaluate local brushstroke quality in calligraphy and generate educationally useful natural language feedback. Comparing GPT-4o, Claude Sonnet 4, and Gemini 2.5 Flash against expert calligraphers, we find that while models achieve useful absolute accuracy, none produce statistically significant rank correlations with human judgment.
-    </p>
-  </div>
-</div>
+        <img src="fudey.jpg" alt="Fudey project" style="width:200px; height:130px; object-fit:cover; border-radius:6px; border:1px solid var(--border);" />
+        <div>
+          <h3>Fudey: A Tablet-Based Calligraphy Learning System with Multimodal Feedback</h3>
+          <p class="project-meta">Mio Mitamura — <em>HCII 2026</em> · <em>未踏ジュニア 2025 Super Creator</em></p>
+          <p style="font-size:0.9rem;">Fudey is an iPad app that makes the invisible properties of brush technique — pressure, speed, and tilt — simultaneously visible, audible, and spatially explorable. In a user study with 45 participants, 77.8% showed measurable improvement in stroke quality after just 3 minutes of use.</p>
+          <div class="project-links">
+            <a href="https://jr.mitou.org/projects/2025/fudey" target="_blank">→ 未踏ジュニア</a>
+          </div>
+        </div>
+      </div>
 
       <div class="project-item">
-  <img src="vlm.jpg" alt="VLM project" style="width:200px; height:130px; object-fit:cover; border-radius:6px; border:1px solid var(--border);" />
-    <div style="text-align:center; color: var(--muted); font-size:0.8rem;">
-      project image here
-    </div>
-  </div>
-  <div>
-    <h3>Fudey: A Tablet-Based Calligraphy Learning System with Multimodal Feedback</h3>
-    <p class="project-meta">Mio Mitamura — <em>HCII 2026</em> · <em>未踏ジュニア 2025 Super Creator</em></p>
-    <p style="font-size:0.9rem;">
-      Fudey is an iPad app that makes the invisible properties of brush technique — pressure, speed, and tilt — simultaneously visible, audible, and spatially explorable. In a user study with 45 participants, 77.8% showed measurable improvement in stroke quality after just 3 minutes of use.
-    </p>
-    <div class="project-links">
-      <a href="https://jr.mitou.org/projects/2025/fudey" target="_blank">→ 未踏ジュニア</a>
-    </div>
-  </div>
-</div>
-      
+        <img src="vlm.jpg" alt="VLM project" style="width:200px; height:130px; object-fit:cover; border-radius:6px; border:1px solid var(--border);" />
+        <div>
+          <h3>Local Brushstroke Quality Assessment via Vision-Language Feedback</h3>
+          <p class="project-meta">Mio Mitamura, Hirokatsu Kataoka — <em>CVPR 2026 Workshop</em> · <em>情報処理学会 2025</em></p>
+          <p style="font-size:0.9rem;">We investigate whether Multimodal Large Language Models (MLLMs) can evaluate local brushstroke quality in calligraphy and generate educationally useful natural language feedback. Comparing GPT-4o, Claude Sonnet 4, and Gemini 2.5 Flash against expert calligraphers, we find that while models achieve useful absolute accuracy, none produce statistically significant rank correlations with human judgment.</p>
+        </div>
+      </div>
 
     </div>
   </section>
