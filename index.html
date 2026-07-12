@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -129,6 +129,20 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .profile-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      text-align: center;
+      margin-top: 0.85rem;
+      line-height: 1.3;
     }
     .profile-img-placeholder {
       width: 140px;
@@ -307,8 +321,10 @@
   <section id="about">
     <h2>About Me</h2>
     <div class="about-grid">
-      <!-- プロフィール画像: src="your-photo.jpg" に変更してください -->
-      <img src="photo.jpg" alt="Mio Mitamura" class="profile-img" />
+      <div class="profile-col">
+        <img src="photo.jpg" alt="Mio Mitamura" class="profile-img" />
+        <h1 class="profile-name">Mio Mitamura</h1>
+      </div>
 
       <div class="about-bio">
         <div class="social-links" style="margin-bottom: 1rem; margin-top: 0;">
